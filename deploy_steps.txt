@@ -12,5 +12,5 @@ pip install -r requirements.txt
 python main.py
 
 # deploy
-gcloud app deploy
+gcloud app deploy --project nn-captcha
 

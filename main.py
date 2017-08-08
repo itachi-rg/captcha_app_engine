@@ -20,7 +20,7 @@ def predict():
     uri = 'http://35.193.77.218/predict?captchaString='+captchaString
     captcha = requests.get(uri)
 	
-    if len(captcha) != 4 :
+    if len(captcha.text) != 4 :
         return ""
     else :
         return captcha.text
