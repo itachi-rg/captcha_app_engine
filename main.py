@@ -1,19 +1,29 @@
-import loggin
+import logging
 
 from flask import Flask
 from flask import request
+from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 
+CORS(app, headers=['Content-Type'])
 
 @app.route('/')
 def hello():
     return 'Hello World!'
 
-@app.route('/predict')
+@app.route('/predict', methods=['POST'])
 def predict():
-    captchaString = request.args.get('captchaString')
-    return captchaString;
+    jsonData = request.get_json()
+    captchaString = jsonData['captchaString']
+    uri = 'http://35.193.77.218/predict?captchaString='+captchaString
+    captcha = requests.get(uri)
+	
+    if len(captcha) != 4 :
+        return ""
+    else :
+        return captcha.text
 
 @app.errorhandler(500)
 def server_error(e):
