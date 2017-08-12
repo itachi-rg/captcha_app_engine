@@ -17,7 +17,7 @@ def hello():
 def predict():
     jsonData = request.get_json()
     captchaString = jsonData['captchaString']
-    uri = 'http://35.193.77.218/predict?captchaString='+captchaString
+    uri = 'http://35.196.233.143/predict?captchaString='+captchaString
     captcha = requests.get(uri)
 	
     if len(captcha.text) != 4 :
